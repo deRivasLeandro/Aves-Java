@@ -1,9 +1,10 @@
 
 public class Main {
     public static void main(String[] args) {
-        Pepita pepita = new Pepita();
-        Pepon pepon = new Pepon();
-        Paloma bombon = new Paloma();
+        Logger logger = new Logger("INFO");
+        Golondrina pepita = new Golondrina(logger, 2);
+        Golondrina pepon = new Golondrina(logger, 1);
+        Paloma bombon = new Paloma(logger);
         pepita.comer(5);
         pepita.volar(1);
         pepita.comer(20);
