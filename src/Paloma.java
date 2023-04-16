@@ -1,16 +1,16 @@
 public class Paloma extends Ave {
 
-    public Paloma(Logger logger, String nombre) {
-        super(logger, nombre);
+    public Paloma(String nombre) {
+        super(nombre);
     }
     public void defecar() {
         if(this.energia >= 1) {
             this.energia--;
             this.distanciaRecorrida++;
-            logger.showWarn(this.nombre + " defecó.");
+            Logger.getInstance("INFO").showWarn(this.nombre + " defecó.");
         }
         else {
-            logger.showError(this.nombre + " no tiene energía suficiente para defecar.");
+            Logger.getInstance("INFO").showError(this.nombre + " no tiene energía suficiente para defecar.");
         }
     }
 }

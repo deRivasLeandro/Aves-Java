@@ -1,7 +1,7 @@
 public class Golondrina extends Ave {
     protected int energiaParaPescar;
-    public Golondrina(Logger logger, int energiaParaPescar, String nombre) {
-        super(logger, nombre);
+    public Golondrina(int energiaParaPescar, String nombre) {
+        super(nombre);
         this.energiaParaPescar = energiaParaPescar;
     }
     public void pescar(){
@@ -11,14 +11,14 @@ public class Golondrina extends Ave {
             this.distanciaRecorrida++;
             if(numero == 10) {
                 this.energia += 10;
-                this.logger.showInfo(this.nombre + " consiguió pescar.");
+                Logger.getInstance("INFO").showInfo(this.nombre + " consiguió pescar.");
             }
             else {
-                this.logger.showWarn(this.nombre + " no pudo pescar.");
+                Logger.getInstance("INFO").showWarn(this.nombre + " no pudo pescar.");
             }
         }
         else {
-            this.logger.showError(this.nombre + " no tiene energía suficiente para pescar.");
+            Logger.getInstance("INFO").showError(this.nombre + " no tiene energía suficiente para pescar.");
         }
 
     }
