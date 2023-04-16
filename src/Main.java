@@ -1,14 +1,21 @@
+import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) {
-        Logger logger = new Logger("INFO");
-        Golondrina pepita = new Golondrina(logger, 2);
-        Golondrina pepon = new Golondrina(logger, 1);
-        Paloma bombon = new Paloma(logger);
+    public static void main2(String[] args) {
+        Logger logger = Logger.getInstance("ERROR");
+        Golondrina pepita = new Golondrina(logger, 2, "Pepita");
+        Golondrina pepon = new Golondrina(logger, 1, "Pepón");
+        logger = Logger.getInstance("INFO");
+        Paloma bombon = new Paloma(logger, "Bombón");
+        System.out.println("Pepita recorrió " + pepita.getDistanciaRecorrida() + " kms.");
         pepita.comer(5);
         pepita.volar(1);
         pepita.comer(20);
         pepita.volar(2);
+        System.out.println("Pepita recorrió " + pepita.getDistanciaRecorrida() + " kms.");
         System.out.println("Energía de Pepita: " + pepita.getEnergia());
         System.out.println("Energía de Pepón: " + pepon.getEnergia());
         pepita.pescar();
@@ -22,17 +29,19 @@ public class Main {
         System.out.println("Energía de Bombón: " + bombon.getEnergia());
         bombon.defecar();
         System.out.println("Energía de Bombón: " + bombon.getEnergia());
-        Logger loggerInfo = new Logger("INFO");
-        Logger loggerWarn = new Logger("WARN");
-        Logger loggerError = new Logger("ERROR");
-        loggerInfo.showInfo("LOGGER INFO");
-        loggerInfo.showWarn("LOGGER INFO");
-        loggerInfo.showError("LOGGER INFO");
-        loggerWarn.showInfo("LOGGER WARN");
-        loggerWarn.showWarn("LOGGER WARN");
-        loggerWarn.showError("LOGGER WARN");
-        loggerError.showInfo("LOGGER ERROR");
-        loggerError.showWarn("LOGGER ERROR");
-        loggerError.showError("LOGGER ERROR");
+    }
+
+    public static void main(String[] args) {
+        Logger logger = Logger.getInstance("INFO");
+        Mariposa twinkle = new Mariposa(logger, "Twinkle");
+        Golondrina pepita = new Golondrina(logger, 2, "Pepita");
+        Golondrina pepon = new Golondrina(logger, 1, "Pepón");
+        Paloma bombon = new Paloma(logger, "Bombón");
+        ArrayList<Voladores> lista = new ArrayList<Voladores>() {{add(twinkle); add(pepita); add(pepon); add(bombon);}};
+        lista.forEach(voladores -> voladores.comer(20));
+        lista.forEach(voladores -> voladores.volar(2));
+        lista.forEach(voladores -> voladores.comer(10));
+        lista.forEach(voladores -> voladores.volar(3));
+        lista.forEach(Voladores::getDistanciaRecorrida);
     }
 }
